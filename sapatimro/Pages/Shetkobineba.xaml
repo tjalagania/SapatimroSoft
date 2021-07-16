@@ -1,0 +1,270 @@
+﻿<Page x:Class="sapatimro.Pages.Shetkobineba"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:sapatimro.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="900"
+      Loaded="Page_Loaded"
+      Title="Shetkobineba"
+      
+      >
+    <Page.Resources>
+        <local:DateConverter x:Key="dtconverter"></local:DateConverter>
+        <local:BoolConvert x:Key="blconvet"></local:BoolConvert>
+    </Page.Resources>
+    <StackPanel Grid.Row="1" UseLayoutRounding="False">
+        <TextBlock Text="შეტყობინება საპატიმრო ვადის შესახებ" 
+                               Style="{StaticResource satauriStyle}"
+                               />
+        <DataGrid BorderThickness="0,1"
+                              TextOptions.TextFormattingMode="Display" 
+                              AlternatingRowBackground="#FFFCFBFB" 
+                              AlternationCount="2"
+                              RowBackground="#FF90C9F1" 
+                              CanUserDeleteRows="False"
+                              MaxHeight="400" MinHeight="400"
+                              Margin="10 30 10 0"
+                              x:Name="brlist_view" 
+                             AutoGenerateColumns="False" 
+                             GridLinesVisibility="Horizontal" 
+                             HorizontalGridLinesBrush="#FFDEDEDE" 
+                             VerticalGridLinesBrush="{x:Null}" 
+                             FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+                             MouseDoubleClick="brlist_view_MouseDoubleClick"
+                              >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn MaxWidth="110" >
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock>საქმის ნომერი</TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Saqme.saqme_nomeri}"
+                                                   Style="{StaticResource listtxtblk}"
+                                                   ></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn MinWidth="200" MaxWidth="250">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock>ბრალდებული (გ.ს.მ)</TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                            Text="{Binding Path=FullName}"
+                                            MaxWidth="250"
+                                            Style="{StaticResource listtxtblk}"
+                                           
+                                            ></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock MaxWidth="130" TextWrapping="Wrap" HorizontalAlignment="Left">
+                                        წინა/სას განხილვის თარიღი</TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=cinasasamartlo,Converter={StaticResource ResourceKey=dtconverter}}" 
+                                       Style="{StaticResource listtxtblk}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock MaxWidth="120" TextWrapping="Wrap">არს/განხილვის თარიღი</TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=arsebiti,Converter={StaticResource dtconverter}}" 
+                                       Style="{StaticResource listtxtblk}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn MinWidth="300">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock>შენიშვნა</TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock 
+                                            Text="{Binding Path=Shetkobinabe}"
+                                            Style="{StaticResource listtxtblk}"
+                                            Foreground="Green"
+                                            TextWrapping="Wrap"
+                                            >
+
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Grid Margin="10 30 10 0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="0 0 10 0">
+                <TextBlock Text="საქმის ნომერი" FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps" TextOptions.TextFormattingMode="Display" FontWeight="Bold" />
+                <TextBox Style="{StaticResource textbox_styles}" />
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="0 0 10 0">
+                <TextBlock Text="ბრალდებულის სახელი" FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps" TextOptions.TextFormattingMode="Display" FontWeight="Bold" />
+                <TextBox Style="{StaticResource textbox_styles}" />
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2">
+                <TextBlock Text="ბლადებულის გვარი" FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps" FontWeight="Bold" />
+                <TextBox Style="{StaticResource textbox_styles}" />
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="3"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 0 10"
+                        >
+                <Button Template="{StaticResource Buttons}"
+                        HorizontalAlignment="Center"
+                        IsEnabled="{Binding ElementName=disabler, Path=IsChecked, Converter={StaticResource blconvet}}"
+                        Padding="20 7" FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps" TextOptions.TextFormattingMode="Display"
+                        >
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                            <GradientStop Color="#FF0BA636" Offset="0" />
+                            <GradientStop Color="#FF0C872E" Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    ძებნა
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" 
+                        Grid.ColumnSpan="3" 
+                        Orientation="Horizontal"
+                        Margin="0 10 0 10"
+                        >
+                <TextBlock Text="ბრალდებული (გ.ს.მ)" 
+                           FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps" 
+                           FontWeight="Bold" Margin="0 0 10 0" />
+                <TextBlock Text="" x:Name="archBraldebuli" VerticalAlignment="Center" FontFamily="/sapatimro;component/Fonts/#BPG SSP" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                        Margin="0 10 0 0"
+                        >
+                <TextBlock Text="არსებით განხილვაზე აღკვეთი ღონისძიების თარიღი" FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+                           TextOptions.TextFormattingMode="Display" FontWeight="Bold" />
+                
+            </StackPanel>
+            <DatePicker Grid.Row="2" Grid.Column="2" x:Name="arsebitiDate" />
+            <Button Template="{StaticResource Buttons}"
+                        HorizontalAlignment="Center"
+                        Grid.Row="2" Grid.Column="3"
+                        x:Name="arsbitisDamateba_btn"
+                        Click="arsbitisDamateba_btn_Click"
+                        IsEnabled="{Binding ElementName=disabler, Path=IsChecked, Converter={StaticResource blconvet}}"
+                        Padding="20 7" 
+                        
+                    FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+                    TextOptions.TextFormattingMode="Display"
+                        >
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <GradientStop Color="#FF0BA636" Offset="0" />
+                        <GradientStop Color="#FF0C872E" Offset="1" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                ჩაწერა
+            </Button>
+            <StackPanel Grid.Row="3" Grid.Column="0" 
+                        
+                        Margin="0 30 0 0"
+                        Grid.ColumnSpan="2"
+                        >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0" 
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        Margin="0 0 0 10"
+                        >
+                        <CheckBox x:Name="disabler"></CheckBox>
+                    <TextBlock 
+                        Margin="10 0 0 0"
+                        Text="საქმის დამთავრება" VerticalAlignment="Center"  />
+                    </StackPanel>
+                    
+                    <TextBlock Text="საქმის დამთავრების თარიღი" 
+                           FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+                           FontWeight="Bold" TextOptions.TextFormattingMode="Display"
+                           VerticalAlignment="Center"
+                           Grid.Row="1"
+                           Grid.Column="0" Foreground="#FF590A27"
+                           />
+                <DatePicker 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left"
+                    x:Name="endDatePicker"
+                    />
+                    <TextBlock Text="პატიმრობის გადასინჯვის შედეგი" 
+                           FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+                           FontWeight="Bold" TextOptions.TextFormattingMode="Display"
+                           VerticalAlignment="Center"
+                               Grid.Row="2" Grid.Column="0"
+                               Margin="0 10 0 0" Foreground="#FF590A27"
+                           />
+
+                    <ComboBox IsEditable="True"
+                              IsTextSearchEnabled="True"
+                              MinWidth="150"
+                              Margin="0 10 0 0"
+                              Grid.Row="2"
+                              Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              x:Name="patshedegi"
+                              />
+                    <Button Grid.Column="1" Grid.Row="3" Template="{StaticResource Buttons}"
+                            HorizontalContentAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            Padding="15 7"
+                            Margin="0 10 0 0"
+                            x:Name="endCase_btn"
+                            Click="endCase_btn_Click"
+                            IsEnabled="{Binding ElementName=disabler, Path=IsChecked}"
+                            >
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 0">
+                                <GradientStop Color="#feb692" Offset="0" />
+                                <GradientStop Color="#ea5455" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <TextBlock Text=" დამთავრება" TextAlignment="Center" />
+
+                    </Button>
+                </Grid>
+                
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Page>

@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:conv="clr-namespace:sapatimro.Pages"
+                    >
+    
+    <ControlTemplate x:Key="Buttons" TargetType="{x:Type Button}" x:Name="butonstmp">
+        <Border BorderBrush="{x:Null}" BorderThickness="0"
+                CornerRadius="8"
+                Background="{TemplateBinding Background}"
+                >
+            <ContentPresenter 
+                Margin="{TemplateBinding Padding}"
+                Cursor="Hand"
+                >
+
+            </ContentPresenter>
+        </Border>
+        
+    </ControlTemplate>
+    <Style x:Key="textbox_styles" TargetType="{x:Type TextBox}">
+        <Setter Property="Padding" Value="2 7"/>
+        <Setter Property="FontFamily" Value="/sapatimro;component/Fonts/#BPG SSP" />
+        <Setter Property="Margin" Value="0 5 0 10" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="hrmenu" TargetType="Menu">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel VerticalAlignment="Top"></StackPanel>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="satauriStyle">
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="FontSize"   Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#f80444" />
+        <Setter Property="FontFamily" Value="/sapatimro;component/Fonts/#BPG SSP Caps" />
+    </Style>
+    <Style TargetType="DataGrid" x:Key="dtgrid_style">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="AlternatingRowBackground" Value="#FFFCFBFB" />
+        <Setter Property="AlternationCount" Value="2" />
+        <Setter Property="RowBackground" Value="#FF90C9F1" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="MaxHeight" Value="400" />
+        <Setter Property="MinHeight" Value="400" />
+        <Setter Property="Margin" Value="10 30 10 0" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="GridLinesVisibility" Value="Horizontal" />
+        <Setter Property="HorizontalGridLinesBrush" Value="#FFDEDEDE" />
+        <Setter Property="VerticalGridLinesBrush" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="/sapatimro;component/Fonts/#BPG SSP Caps" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="listtxtblk">
+
+        <Setter Property="MaxWidth" Value="300" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontFamily" Value="/sapatimro;component/Fonts/#BPG SSP" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="Margin" Value="5 5" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#FF514E4E" />
+    </Style>
+   
+</ResourceDictionary>

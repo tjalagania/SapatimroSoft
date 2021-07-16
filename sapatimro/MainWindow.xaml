@@ -1,0 +1,104 @@
+﻿<Window x:Class="sapatimro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sapatimro"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="480" Width="700" 
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen" 
+        FontFamily="/sapatimro;component/Fonts/#BPG SSP Caps"
+        BorderBrush="{x:Null}" BorderThickness="0" Background="Transparent"
+        >
+    <Border CornerRadius="12" x:Name="mainBorder" MouseDown="mainBorder_MouseDown">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                <GradientStop Color="#abdcff" Offset="0" />
+                <GradientStop Color="#0396ff" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel  HorizontalAlignment="Center">
+                <Image Source="Images/gerbi.png" 
+                       Width="200"
+                       Margin="0 30 0 20"
+                       />
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="22" 
+                           TextAlignment="Center"
+                           Margin="0 20 0 40" FontWeight="Bold"
+                           >
+                   <Run Foreground="#d9534f">პატიმრობის ვადის</Run>  გადასინჯვის პროგრამა
+                </TextBlock>
+                <TextBlock 
+                    VerticalAlignment="Bottom"
+                    Text="ქუთაისის საქალაქო სასამართლო" 
+                           HorizontalAlignment="Center"
+                           />
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Right">
+                    <Button 
+                        Margin="5"
+                        x:Name="closeBtn"
+                        Click="closeBtn_Click"
+                        Template="{StaticResource Buttons}">
+                        <Image Source="Images/close-button.png" 
+                               Width="20"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel 
+                    Margin="20 0 20 0"
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom">
+                    <TextBlock 
+                        Text="ავტორიზაცია" 
+                        FontSize="22" 
+                        FontWeight="Bold" 
+                        TextAlignment="Center"
+                        Foreground="#d9534f"
+                        Margin="0 0 0 20"
+                        />
+                    <TextBlock Text="მოსამართლე" />
+                    <TextBox Style="{StaticResource textbox_styles}" x:Name="judge_login" FontSize="14"/>
+                    <TextBlock Text="პაროლი" />
+                    <TextBox Style="{StaticResource textbox_styles}" x:Name="judge_passwd" FontSize="14">
+                       
+                    </TextBox>
+                   
+                </StackPanel>
+                
+                    <Button Padding="10 8" Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Margin="0 30 0 70"
+                                Template="{StaticResource Buttons}"
+                                x:Name="auth_btn"
+                                Click="auth_btn_Click"
+                                IsDefault="True"
+                            >
+                        <Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#81fbb8" />
+                                <GradientStop Color="#28c76f" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        ავტორიზაცია
+                    </Button>
+                
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
