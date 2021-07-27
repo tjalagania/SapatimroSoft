@@ -23,6 +23,10 @@ namespace sapatimro.Pages
     {
         private DateTime curentDate;
         private DateTime previusDate;
+        private List<EF.Braldebuli> braldebulebi;
+        private string FiltriSaqmeNomer;
+        private string FiltriBraldebuliSaxeli;
+        private string FiltriBraldebulGvari;
         public Mimdinare()
         {
             InitializeComponent();
@@ -39,14 +43,20 @@ namespace sapatimro.Pages
             previusDate = new DateTime(curentDate.Year, curentDate.Month - 2, curentDate.Day);
             leftDate.SelectedDate = previusDate;
             rightDate.SelectedDate = curentDate;
+            braldebulebi = new List<EF.Braldebuli>();
         }
 
-        private async Task<List<EF.Braldebuli>>SeachBr(DateTime ldt,DateTime rdt)
+        private async
+        Task
+        SeachBr(DateTime ldt, DateTime rdt)
         {
-            List<EF.Braldebuli> braldebulebi = new List<EF.Braldebuli>();
+            if(braldebulebi.Count > 0)
+            {
+                braldebulebi.Clear();
+            }
             try
             {
-                using(EF.Model1 md = new EF.Model1())
+                using (EF.Model1 md = new EF.Model1())
                 {
                     var tmpbraldebulebi = md.Braldebuli.Where(
                         b => b.cinasasamartlo >= ldt && b.cinasasamartlo <= rdt
@@ -58,19 +68,95 @@ namespace sapatimro.Pages
                         string sq = br.Saqme.saqme_nomeri;
                         braldebulebi.Add(br);
                     }
-                        
-                    return braldebulebi;
+
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
         private async void search_btn_Click(object sender, RoutedEventArgs e)
         {
+            await SeachBr((DateTime)leftDate.SelectedDate,(DateTime)rightDate.SelectedDate);
+            listView.ItemsSource = braldebulebi;
+            saqme_number_cmb.ItemsSource = braldebulebi;
+            brald_gv_cmb.ItemsSource = braldebulebi;
+            brald_saxeli_cmb.ItemsSource = braldebulebi;
+        }
+
+        private void fiter_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if ( !string.IsNullOrEmpty(FiltriSaqmeNomer) &&
+              !string.IsNullOrEmpty(FiltriBraldebuliSaxeli) &&  !string.IsNullOrEmpty(FiltriBraldebulGvari))
+            {
+                Filter.FilterGrid(FiltriSaqmeNomer, FiltriBraldebuliSaxeli, FiltriBraldebulGvari, braldebulebi, listView);
+                return;
+            }
+            if(!string.IsNullOrEmpty(FiltriSaqmeNomer) && !string.IsNullOrEmpty(FiltriBraldebuliSaxeli))
+            {
+                Filter.FilterGrid(FiltriSaqmeNomer, FiltriBraldebuliSaxeli, braldebulebi, listView);
+                return;
+            }
+            if( !string.IsNullOrEmpty(FiltriSaqmeNomer))
+            {
+                Filter.FilterGrid(FiltriSaqmeNomer, braldebulebi, listView);
+                return;
+            }
+            if(!string.IsNullOrEmpty(FiltriBraldebuliSaxeli) && !string.IsNullOrEmpty(FiltriBraldebulGvari))
+            {
+                Filter.FilterFrombraldebuli(FiltriBraldebuliSaxeli, FiltriBraldebulGvari, braldebulebi, listView);
+                return;
+            }
+            if (!string.IsNullOrEmpty(FiltriBraldebuliSaxeli))
+            {
+                Filter.FilterFrombraldebuli(FiltriBraldebuliSaxeli, braldebulebi, listView,true);
+                return;
+            }
+            if (!string.IsNullOrEmpty(FiltriBraldebulGvari))
+            {
+                Filter.FilterFrombraldebuli(FiltriBraldebulGvari, braldebulebi, listView, false);
+                return;
+            }
+        }
+
+        private void saqme_number_cmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (saqme_number_cmb.SelectedItem != null)
+            {
+                FiltriSaqmeNomer = ((EF.Braldebuli)saqme_number_cmb.SelectedItem).Saqme.saqme_nomeri;
+            }
+            else
+                FiltriSaqmeNomer = null;
             
-            listView.ItemsSource = await SeachBr((DateTime)leftDate.SelectedDate,(DateTime)rightDate.SelectedDate);
+        }
+
+        private void brald_saxeli_cmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (brald_saxeli_cmb.SelectedItem != null)
+            {
+                FiltriBraldebuliSaxeli = ((EF.Braldebuli)brald_saxeli_cmb.SelectedItem).braldebuli_sax;
+            }
+            else
+                FiltriBraldebuliSaxeli = null;
+        }
+
+        private void brald_gv_cmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (brald_gv_cmb.SelectedItem != null)
+            {
+                FiltriBraldebulGvari = ((EF.Braldebuli)brald_gv_cmb.SelectedItem).braldebuli_gv;
+            }
+            else
+                FiltriBraldebulGvari = null;
+        }
+
+        private void corectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EF.Braldebuli br = (EF.Braldebuli)listView.SelectedItem;
+            Corect cr = new Corect(br);
+            cr.ShowDialog();
         }
     }
 }

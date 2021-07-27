@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sapatimro"
         mc:Ignorable="d"
-        Title="ბრალდებულის კორეკქტირება" Height="350" Width="550" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Title="ბრალდებულის კორეკქტირება" Height="380" Width="580" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -50,23 +51,31 @@
                      x:Name="braldebuli_gvari"
                      Text="{Binding Path=braldebuli_gv}"
                      />
-            <TextBlock Text="ბრალდებულის მამის სახელი:" Grid.Row="4" Style="{StaticResource listtxtblk}" />
+            <TextBlock Text="ბრალდებულის მამის სახელი:" Grid.Row="5" Style="{StaticResource listtxtblk}" />
             <TextBox Style="{StaticResource textbox_styles}" 
                      HorizontalAlignment="Left"
                      MinWidth="200"
-                     Grid.Row="4" 
+                     Grid.Row="5" 
                      VerticalAlignment="Center"
                      Grid.Column="1" 
                      x:Name="braldebuli_msaxeli"
                      Text="{Binding Path=brladebuli_msax}"
                      />
-            <TextBlock Text="წინა / არს  სხდომის თარიღი:"
+            <TextBlock Text="წინა სას  სხდომის თარიღი:"
                        Grid.Row="3" Style="{StaticResource listtxtblk}" />
             <DatePicker Grid.Row="3" Grid.Column="1" MinWidth="200" 
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         x:Name="ganxilvisTarigi"
                         SelectedDate="{Binding Path=cinasasamartlo}"
+                        />
+            <TextBlock Text="არს  განხილვის თარიღი:"
+                       Grid.Row="4" Style="{StaticResource listtxtblk}" />
+            <DatePicker Grid.Row="4" Grid.Column="1" MinWidth="200" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        x:Name="arsganxilvisTarigi"
+                        SelectedDate="{Binding Path=arsebiti}"
                         />
             <Button 
                 Margin="0 0 20 20"
@@ -75,7 +84,7 @@
                 Padding="15 7"
                 Template="{StaticResource Buttons}" 
                 Grid.Column="1" 
-                Grid.Row="5"
+                Grid.Row="6"
                 x:Name="corect_btn"
                 Click="corect_btn_Click"
                 >

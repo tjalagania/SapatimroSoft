@@ -40,19 +40,27 @@ namespace sapatimro
         {
             if (judge_login.Text.Trim() != string.Empty && judge_passwd.Text.Trim() != string.Empty)
             {
-                if (Auth.AuthJudge(judge_login.Text.Trim(), judge_passwd.Text.Trim()))
+                try
                 {
-                    Dziritadi dz = new Dziritadi();
-                    dz.Show();
-                    Close();
+                    if (Auth.AuthJudge(judge_login.Text.Trim(), judge_passwd.Text.Trim()))
+                    {
+                        Dziritadi dz = new Dziritadi();
+                        dz.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ლოგინი ან პასვორდი არასწორია", "გაფრთხილება",
+                            MessageBoxButton.OK, 
+                            MessageBoxImage.Warning);
+                        return;
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("ლოგინი ან პასვორდი არასწორია", "გაფრთხილება",
-                        MessageBoxButton.OK, 
-                        MessageBoxImage.Warning);
-                    return;
+                    MessageBox.Show(ex.Message);
                 }
+               
                     
             }
             else

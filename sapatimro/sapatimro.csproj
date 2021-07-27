@@ -97,6 +97,7 @@
     <Compile Include="EF\Saqme.cs" />
     <Compile Include="EF\sysdiagrams.cs" />
     <Compile Include="Models\Auth.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\Saqme.cs" />
     <Compile Include="Models\SPJudge.cs" />
     <Compile Include="Models\State.cs" />

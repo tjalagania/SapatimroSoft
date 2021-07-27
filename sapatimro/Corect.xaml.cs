@@ -22,11 +22,11 @@ namespace sapatimro
     {
         private EF.Braldebuli Braldebuli;
         private bool Arsebiti;
-        public Corect(EF.Braldebuli braldebuli, bool arsebiti = true)
+        public Corect(EF.Braldebuli braldebuli)
         {
             InitializeComponent();
             Braldebuli = braldebuli;
-            Arsebiti = arsebiti;
+            
             mainGrid.DataContext = Braldebuli;
         }
        
@@ -61,6 +61,7 @@ namespace sapatimro
                         br.cinasasamartlo = (DateTime)ganxilvisTarigi.SelectedDate;
                         br.Saqme.saqme_nomeri = saqmis_nomeri.Text.Trim();
                         br.brladebuli_msax = mamissaxeli;
+                        br.arsebiti = arsganxilvisTarigi.SelectedDate;
                         int i = await md.SaveChangesAsync();
                         if(i > 0)
                         {

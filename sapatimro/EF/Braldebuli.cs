@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Windows.Controls;
 
     [Table("Braldebuli")]
     public partial class Braldebuli
@@ -14,6 +15,11 @@
         public Braldebuli()
         {
             Arsebiti1 = new HashSet<Arsebiti>();
+        }
+
+        public static explicit operator Braldebuli(ItemCollection v)
+        {
+            throw new NotImplementedException();
         }
 
         [Key]
